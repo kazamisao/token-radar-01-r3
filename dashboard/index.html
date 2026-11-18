@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied launch value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="brand">
+      <div class="sweep" aria-hidden="true"><span></span></div>
+      <div>
+        <h1>Token Radar</h1>
+        <p class="tagline">Pre-token protocols, ranked by the value the market would likely give their token at launch.</p>
+      </div>
+    </div>
+    <div class="model-chip" id="model-chip"></div>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <button type="button" id="tab-pre" class="tab active">Pre-token radar</button>
+  <button type="button" id="tab-live" class="tab">Already trading — the comparables</button>
+</nav>
+
+<main>
+  <section id="view-pre">
+    <div class="controls">
+      <label class="ctl grow">Search
+        <input id="q" type="search" placeholder="Protocol name or slug">
+      </label>
+      <label class="ctl">Category
+        <select id="category"></select>
+      </label>
+      <label class="ctl">Chain
+        <select id="chain"></select>
+      </label>
+      <label class="ctl">Min TVL
+        <select id="mintvl">
+          <option value="0">Any</option>
+          <option value="10000000">$10M</option>
+          <option value="50000000">$50M</option>
+          <option value="250000000">$250M</option>
+          <option value="1000000000">$1B</option>
+        </select>
+      </label>
+      <label class="ctl check">
+        <input id="watchonly" type="checkbox"> Watchlist only
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="tablewrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th data-key="rank" class="num">Rank</th>
+            <th data-key="name">Protocol</th>
+            <th data-key="tvl_usd" class="num">TVL</th>
+            <th data-key="change_7d" class="num">7d change</th>
+            <th data-key="age_days" class="num">Age</th>
+            <th data-key="multiple" class="num">Category multiple</th>
+            <th data-key="implied_value_usd" class="num">Implied value</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="hint">Select a protocol for its valuation arithmetic and farm plan. <span class="star">★</span> marks the 40-protocol watchlist: every one of them is on this board.</p>
+  </section>
+
+  <section id="view-live" hidden>
+    <p class="live-note" id="live-note"></p>
+    <div class="tablewrap">
+      <table id="livetable">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th class="num">Market cap</th>
+            <th class="num">TVL</th>
+            <th class="num">Cap / TVL</th>
+          </tr>
+        </thead>
+        <tbody id="liverows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<aside id="detail" hidden aria-label="Protocol detail"></aside>
+
+<footer>
+  <p id="method"></p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
